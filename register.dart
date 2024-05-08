@@ -9,15 +9,14 @@ userRegistration() {
   var password = stdin.readLineSync();
    stdout.write("Enter Your Cnic: ");
   var cnic = stdin.readLineSync();
-  Map newUser = {"name": username, "password": password,"cnic": cnic, "accountBalance": 0};
-  users.add(newUser);
+  users.addAll({"name": username, "password": password,"cnic": cnic, "accountBalance": 0});
   viewUsers();
   print("Registered Successfully");
   print("if you want to continue press 1 else 0");
   var choice = stdin.readLineSync();
   if (choice == '1') {
-    userLogin();
+    userLogin(users);
   } else {
-    "Thank you for choosing our bank";
+    print("Thank you for choosing our bank");
   }
 }

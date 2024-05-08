@@ -1,4 +1,4 @@
-List users = [];
+Map users = {};
 
 viewUsers() {
   print(users);
