@@ -25,8 +25,8 @@ void main() {
     } else if (choice == '3') {
       viewUsers();
     } else if (choice == '4') {
-      print("Good Bye");
       print("Thank you for choosing our bank");
+      print("Good Bye");
       operation = false;
     } else {
       print("You have entered wrong choice:");

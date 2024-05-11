@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'balance.dart';
-import 'data.dart';
 import 'deposit.dart';
 import 'withdraw.dart';
 
@@ -10,7 +9,18 @@ userLogin(users) {
   var username = stdin.readLineSync();
   stdout.write("Enter Your Password: ");
   var password = stdin.readLineSync();
-  if (username == users['name'] && password == users['password']) {
+  bool isLoggedIn = false;
+  int userId =0;
+
+  for (var user in users) {
+    if (username == user['name'] && password == user['password']) {
+      userId = user['id'];
+      isLoggedIn = true;
+      break;
+    }
+  }
+
+  if (isLoggedIn) {
     print("@@@@@@@@@@@@@");
     print("Login Successful");
     print("@@@@@@@@@@@@@");
@@ -22,24 +32,23 @@ userLogin(users) {
       print("2:Deposit");
       print("3:Withdraw");
       print("4:Exit");
-      stdout.write('Choose an option: ');
+      stdout.write('Choose an option:');
       var choice = stdin.readLineSync();
 
       if (choice == '1') {
-        viewAccountBalance();
+        viewAccountBalance(users, userId);
       } else if (choice == '2') {
-        depositAmount();
+        depositAmount(users, userId);
       } else if (choice == '3') {
-        withdrawAmount();
+        withdrawAmount(users, userId);
       } else if (choice == '4') {
-        print("Thank you for choosing our bank");
-        print("Good Bye");
+        print("You are returning to Main Menu");
         operation = false;
       } else {
         print("You have entered wrong choice:");
       }
     }
   } else {
-    print("Invalid credintials, try again");
+    print("Login failed, try again");
   }
 }

@@ -1,13 +1,16 @@
 import 'dart:io';
 import 'balance.dart';
-import 'data.dart';
 
-depositAmount() {
-  stdout.write("Enter Amount to deposit: ");
-  num amount = num.parse(stdin.readLineSync()!);
-  num accountBalance = users['accountBalance'];
-  accountBalance += amount;
-  print("Amount deposited Successfully");
-  users['accountBalance'] = accountBalance;
-  viewAccountBalance();
+
+depositAmount(users,userId) {
+  var user = users.firstWhere((user) => user['id'] == userId, orElse: () => null);
+  if (user != null) {
+    stdout.write("Enter Amount to deposit: ");
+    num amount = num.parse(stdin.readLineSync()!);
+    num accountBalance = user['accountBalance'];
+    accountBalance += amount;
+    print("Amount deposited Successfully");
+    user['accountBalance'] = accountBalance;
+    viewAccountBalance(users,userId);
+  }
 }
